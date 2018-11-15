@@ -1,31 +1,57 @@
 <!--The content below is only a placeholder and can be replaced.-->
-
 <header style="background-color: pink;height: 30px;">
 </header> 
 <div class="container">
   <h2>{{email}}</h2>
-   <img src="assets/img/6.jpg"/>
-   <img src="assets/img/7.jpg"/>
-   <img src="assets/img/8.jpg"/>
-   
+
+  <app-header-image></app-header-image>
+  <h2>Number of records {{results.length}}</h2>
   <div style="width: 60%;">
-  <form action="/action_page.php">
+  <form>
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <label for="num">Enter Num:</label>
+      <input [(ngModel)]="pnum"  type="text" class="form-control"  placeholder="Enter Num" name="num1">
     </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-    </div>
+  
     <div class="form-group form-check">
       <label class="form-check-label">
         <input class="form-check-input" type="checkbox" name="remember"> Remember me
       </label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button type="button" (click)="calFact();"  class="btn btn-primary btn-lg">Calculate Fact</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-danger btn-lg">Clear</button>
   </form>
+   <h3>Result is {{result}}</h3>
+    <hr/>
+   <h2>Factorial</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SNO</th>
+        <th>Num</th>
+        <th>Result</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let temp of results; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{temp.num}}</td>
+        <td>{{temp.result}}</td>
+        <td>
+           <a href="javascipt:" (click)="deleteFact(temp);">  
+          <img src="assets/img/delete.jpg" style="height: 40px;"/>
+        </a>
+        </td>
+      </tr>    
+     
+    </tbody>
+  </table>
+
   </div>
 </div>
 
+<app-footer></app-footer>
 <router-outlet></router-outlet>
